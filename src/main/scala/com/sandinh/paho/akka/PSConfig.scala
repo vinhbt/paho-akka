@@ -18,14 +18,15 @@ import scala.concurrent.duration._
   * @param cleanSession Sets whether the client and server should remember state across restarts and reconnects.
   */
 case class PSConfig(
-    brokerUrl:         String,
-    userName:          String         = null,
-    password:          String         = null,
-    stashTimeToLive:   Duration       = 1.minute,
-    stashCapacity:     Int            = 8000,
-    reconnectDelayMin: FiniteDuration = 10.millis,
-    reconnectDelayMax: FiniteDuration = 30.seconds,
-    cleanSession:      Boolean        = CLEAN_SESSION_DEFAULT
+    brokerUrl:          String,
+    userName:           String         = null,
+    password:           String         = null,
+    stashTimeToLive:    Duration       = 1.minute,
+    stashCapacity:      Int            = 8000,
+    reconnectDelayMin:  FiniteDuration = 10.millis,
+    reconnectDelayMax:  FiniteDuration = 30.seconds,
+    cleanSession:       Boolean        = CLEAN_SESSION_DEFAULT,
+    numPublishInstance: Int            = 5
 ) {
 
   //pre-calculate the max of connectCount that: reconnectDelayMin * 2^connectCountMax ~ reconnectDelayMax
